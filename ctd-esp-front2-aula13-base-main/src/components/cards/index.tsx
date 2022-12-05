@@ -37,7 +37,7 @@ interface CharacterProps {
 }
 
 const Character = () => {
-  const [character, setCharacter] = useState([]);
+  const [character, setCharacter] = useState<CharacterProps[]>([]);
 
   useEffect(() => {
     const fetchCharacter = () =>

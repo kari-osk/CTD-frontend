@@ -5,7 +5,7 @@ import React from "react";
 
 const Container = {
   padding: 124,
-  backgroundImage: 'url(../../../public/wallpaper.png)'
+  backgroundImage: '(../../../public/wallpaper.png)'
 }
 
 const Paragraph = {
