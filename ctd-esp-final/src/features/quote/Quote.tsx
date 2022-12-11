@@ -1,6 +1,7 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { shallowEqual } from "react-redux";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
+import { getMessage } from "./utils";
 import {
   getQuoteState,
   clear,
@@ -11,19 +12,17 @@ import {
   getQuoteAsync,
   filterQuoteFromAPI,
 } from "./citaSlice";
-import { getMessage } from "./utils";
-import { Botao, Input, AutorCita, ContainerCita, TextoCita } from "./styled";
+import { Botao, Input, AutorCita, ContainerCita, TextoCita, ValidationErrorMessage } from "./styled";
 
 
 export const Quote = () => {
 
   const [inputValue, setInputValue] = useState("");
+  const [regexValidation, setRegexValidation] = useState(false);
 
   const { quote = "", character = "" } = useAppSelector(getQuoteState, shallowEqual) || {};
 
   const estadoPedido = useAppSelector(getStateRequest);
-
-  const getInputState = useAppSelector(getInput)
 
   const dispatch = useAppDispatch();
 
@@ -34,18 +33,30 @@ export const Quote = () => {
     setInputValue("");
   };
 
-
   const onSearch = (e: ChangeEvent<HTMLInputElement>) => {
-    // dispatch(filterQuote(e.target.value));
+
+
     dispatch(filterQuoteFromAPI(e.target.value))
-    setInputValue(e.target.value);
     dispatch(clear());
+    setInputValue(e.target.value);
   }
+
+  useEffect(() => {
+    const regex = /^[a-zA-Z]*$/
+    if (regex.test(inputValue)) {
+      setRegexValidation(false)
+    } else {
+      setRegexValidation(true)
+    }
+  }, [inputValue])
+
+
 
 
 
   return (
     <ContainerCita aria-label="form" onSubmit={(e) => e.preventDefault()}>
+
       <TextoCita>{getMessage(quote, estadoPedido)}</TextoCita>
       <AutorCita>{character}</AutorCita>
       <Input
@@ -55,6 +66,9 @@ export const Quote = () => {
         onChange={onSearch}
         placeholder="Digite o autor: Homer, Bart, Lisa, Maggie, Marge..."
       />
+
+      {regexValidation ? <ValidationErrorMessage>Números não são aceitos.</ValidationErrorMessage > : null}
+
       <Botao
         aria-label={inputValue ? "Obter citação" : "Obter citação aleatória"}
         onClick={onClickShowQuote}

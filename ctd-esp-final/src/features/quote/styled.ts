@@ -24,6 +24,12 @@ export const TextoCita = styled.p`
   min-height: 5rem;
 `;
 
+
+export const ValidationErrorMessage = styled.p`
+  font-size: 2rem;
+  color: #b82216;
+`
+
 export const AutorCita = styled.p`
   font-size: 1.7rem;
   font-weight: bold;
