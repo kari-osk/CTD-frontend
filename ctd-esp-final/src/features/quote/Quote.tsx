@@ -34,11 +34,12 @@ export const Quote = () => {
   };
 
   const onSearch = (e: ChangeEvent<HTMLInputElement>) => {
-
-
-    dispatch(filterQuoteFromAPI(e.target.value))
-    dispatch(clear());
     setInputValue(e.target.value);
+    setTimeout(() => {
+      dispatch(filterQuoteFromAPI(e.target.value))
+    }, 1000)
+
+    dispatch(clear());
   }
 
   useEffect(() => {
@@ -49,9 +50,6 @@ export const Quote = () => {
       setRegexValidation(true)
     }
   }, [inputValue])
-
-
-
 
 
   return (

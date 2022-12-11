@@ -68,6 +68,7 @@ export const getQuoteFromAPI =
 
 export const filterQuoteFromAPI = (character: string) => (dispatch: AppDispatch)=> {
     dispatch(getQuoteAsync(character));
+    dispatch(clear());
 }
 
 
