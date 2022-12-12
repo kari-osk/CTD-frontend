@@ -88,15 +88,12 @@ describe("Quote", () => {
   describe("When button is clicked", () => {
     it("call function", async () => {
       render(
-        <Provider store={store}>
-          <QuoteButton primaryBtn={true} onClick={() => mockSearch()} />
-        </Provider>
+        <QuoteButton primaryBtn={true} onClick={() => mockSearch()} />
       );
       const buttonText = screen.getByText("Obter citação aleatória");
       userEvent.click(buttonText);
       await waitFor(() => {
         expect(mockSearch).toBeCalled();
-
       })
     })
   })
