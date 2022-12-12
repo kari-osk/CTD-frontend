@@ -18,7 +18,7 @@ const mockSearch = jest.fn();
 
 
 describe("Quote", () => {
-  describe("When render default state, show in the form", () => {
+  describe("When render default state, in the form presents:", () => {
     it("sentence: Nenhuma citação encontrada.", async () => {
       render(
         <Provider store={store}>
@@ -35,7 +35,7 @@ describe("Quote", () => {
           <Quote />
         </Provider>
       );
-      expect(screen.getAllByPlaceholderText("Digite o autor: Homer, Bart, Lisa, Maggie, Marge...")).not.toBeNull();
+      expect(screen.getAllByPlaceholderText("Digite o nome do personagem: Homer, Bart, Lisa, Maggie, Marge...")).not.toBeNull();
     })
 
     it("button: Obter citação aleatória", async () => {

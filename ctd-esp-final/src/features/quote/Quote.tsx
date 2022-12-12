@@ -9,7 +9,7 @@ import {
   getStateRequest,
   filterQuoteFromAPI,
 } from "./citaSlice";
-import { Button, Input, AutorCita, ContainerCita, TextoCita, ValidationErrorMessage } from "./styled";
+import { Input, AutorCita, ContainerCita, TextoCita, ValidationErrorMessage } from "./styled";
 import { QuoteButton } from "./quoteButton";
 
 
@@ -60,7 +60,7 @@ export const Quote = () => {
         value={inputValue}
         // onChange={(e) => setInputValue(e.target.value)}
         onChange={onSearch}
-        placeholder="Digite o autor: Homer, Bart, Lisa, Maggie, Marge..."
+        placeholder="Digite o nome do personagem: Homer, Bart, Lisa, Maggie, Marge..."
       />
       {regexValidation ? <ValidationErrorMessage>Números não são aceitos.</ValidationErrorMessage > : null}
 
@@ -73,19 +73,6 @@ export const Quote = () => {
         primaryBtn={false}
         onClick={() => onClickClear()}
       />
-
-      {/* <Button
-        aria-label={inputValue ? "Obter citação" : "Obter citação aleatória"}
-        onClick={onClickShowQuote}
-      >
-        {inputValue ? "Obter citação" : "Obter citação aleatória"}
-      </Button> 
-
-
-      <Button aria-label="Apagar" onClick={onClickClear} secondaryColor={true}>
-        Apagar
-      </Button> */}
-
     </ContainerCita>
   );
 }
