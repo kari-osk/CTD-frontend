@@ -52,7 +52,9 @@ export const Quote = () => {
 
 
   return (
-    <Container aria-label="form" onSubmit={(e) => e.preventDefault()}>
+    <Container
+    // aria-label="form" onSubmit={(e) => e.preventDefault()}
+    >
       <QuoteText>{getMessage(quote, estadoPedido)}</QuoteText>
       <CharacterName>{character}</CharacterName>
       <Input

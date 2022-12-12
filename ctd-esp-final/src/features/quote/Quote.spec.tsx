@@ -95,6 +95,17 @@ describe("Quote", () => {
       await waitFor(() => {
         expect(mockSearch).toBeCalled();
       })
+    });
+
+    it("clear input", async () => {
+      render(
+        <QuoteButton primaryBtn={false} onClick={() => mockSearch()} />
+      );
+      const buttonText = screen.getByText("Apagar");
+      userEvent.click(buttonText);
+      await waitFor(() => {
+        expect(mockSearch).toBeCalled();
+      })
     })
   })
 
