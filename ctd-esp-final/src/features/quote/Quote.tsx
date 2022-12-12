@@ -7,9 +7,6 @@ import {
   clear,
   getQuoteFromAPI,
   getStateRequest,
-  // filterQuote,
-  getInput,
-  getQuoteAsync,
   filterQuoteFromAPI,
 } from "./citaSlice";
 import { Botao, Input, AutorCita, ContainerCita, TextoCita, ValidationErrorMessage } from "./styled";
