@@ -1,12 +1,21 @@
-import { fireEvent, getByRole, render, screen, waitFor } from "@testing-library/react"
+import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import { Quote } from "./Quote"
 import { store } from "../../app/store"
 import userEvent from "@testing-library/user-event"
 import { Provider } from "react-redux";
+import { QuoteButton } from "./quoteButton";
+
 
 const mockSearch = jest.fn();
 
-// beforeEach()
+// beforeEach(() => {
+//   render(
+//     <Provider store={store}>
+//       <Quote />
+//     </Provider>
+//   );
+// })
+
 
 describe("Quote", () => {
   describe("When render default state, show in the form", () => {
@@ -17,6 +26,7 @@ describe("Quote", () => {
         </Provider>
       );
       expect(screen.getByText("Nenhuma citação encontrada.")).toBeInTheDocument();
+
     })
 
     it("placeholder: Digite o autor: Homer, Bart, Lisa, Maggie, Marge...", async () => {
@@ -48,6 +58,7 @@ describe("Quote", () => {
     });
   });
 
+
   describe("Insert value in input", () => {
     it("allow to write the character name", async () => {
       render(
@@ -74,21 +85,20 @@ describe("Quote", () => {
   })
 
 
+  describe("When button is clicked", () => {
+    it("call function", async () => {
+      render(
+        <Provider store={store}>
+          <QuoteButton primaryBtn={true} onClick={() => mockSearch()} />
+        </Provider>
+      );
+      const buttonText = screen.getByText("Obter citação aleatória");
+      userEvent.click(buttonText);
+      await waitFor(() => {
+        expect(mockSearch).toBeCalled();
 
-
-
-
-  // describe("when button Obter citação aleatória is clicked", () => {
-  //   it("show random quote", async () => {
-  //     render(
-  //       <Provider store={store}>
-  //         <Quote />
-  //       </Provider>
-  //     );
-  //     const buttonText = screen.getByText("Obter citação aleatória");
-  //     userEvent.click(buttonText);
-  //     expect(mock).toBeCalled();
-  //   })
-  // })
+      })
+    })
+  })
 
 })

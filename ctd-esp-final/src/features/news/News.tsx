@@ -51,7 +51,6 @@ export const News = () => {
   }, []);
 
 
-
   return (
     <ContainerNoticias>
       <TituloNoticias>Notícias dos Simpsons</TituloNoticias>

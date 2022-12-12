@@ -50,7 +50,7 @@ export const Input = styled.input`
   font-family: "Homer Simpson Revised", sans-serif;
 `;
 
-export const Botao = styled.button<{ secondary?: boolean }>`
+export const Button = styled.button<{ secondaryColor?: boolean }>`
   width: 45%;
   min-width: 250px;
   height: 50px;
@@ -67,7 +67,7 @@ export const Botao = styled.button<{ secondary?: boolean }>`
   }
 
   ${(props) =>
-    props.secondary
+    props.secondaryColor
       ? css`
           background-color: #d1b07d;
           color: whitesmoke;
