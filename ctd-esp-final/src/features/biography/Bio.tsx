@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NomesSimpsons, INFO_SIMPSONS } from "./constants";
-import { BioContainer, ContainerBtn, BioImage, BioNome, BioDescription, BioButton } from "./styles";
+import { BioContainer, ContainerButton, BioImage, BioNome, BioDescription, BioButton } from "./styles";
 
 export const Bio = () => {
   const [bioActive, setBioActive] = useState(INFO_SIMPSONS[NomesSimpsons.BART]);
@@ -23,7 +23,7 @@ export const Bio = () => {
 
   return (
     <BioContainer >
-      <ContainerBtn>{criarBotoes()}</ContainerBtn>
+      <ContainerButton>{criarBotoes()}</ContainerButton>
       <div>
         <div>
           <BioImage

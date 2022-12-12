@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ContainerNoticias = styled.div`
+export const Container= styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,7 +10,7 @@ export const ContainerNoticias = styled.div`
   padding: 0 1rem;
 `;
 
-export const TituloNoticias = styled.h2`
+export const Title = styled.h2`
   font-size: 3.5rem;
   font-weight: bold;
   margin: 2rem 0;
@@ -23,7 +23,7 @@ export const TituloNoticias = styled.h2`
   letter-spacing: 0.1rem;
 `;
 
-export const ListaNoticias = styled.div`
+export const NewsList = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -33,7 +33,7 @@ export const ListaNoticias = styled.div`
   padding: 0;
 `;
 
-export const CardNoticiaContainer = styled.div`
+export const CardNewsContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -54,7 +54,7 @@ export const CardNoticiaContainer = styled.div`
   }
 `;
 
-export const ImageCardNoticia = styled.img`
+export const ImageCardNews = styled.img`
   width: 100%;
   height: 40%;
   object-fit: cover;
@@ -62,7 +62,7 @@ export const ImageCardNoticia = styled.img`
   border-top-right-radius: 10px;
 `;
 
-export const TituloCardNoticia = styled.h3`
+export const TitleCardNews = styled.h3`
   font-size: 1.3rem;
   font-weight: bold;
   margin: 1rem auto;
@@ -70,7 +70,7 @@ export const TituloCardNoticia = styled.h3`
   height: 3.5rem;
 `;
 
-export const DescriptionCardNoticia = styled.p`
+export const DescriptionCardNews = styled.p`
   width: 100%;
   max-width: 100%;
   font-size: 1.2rem;
@@ -78,14 +78,14 @@ export const DescriptionCardNoticia = styled.p`
   padding: 0;
 `;
 
-export const DateCardNoticia = styled.p`
+export const DateCardNews = styled.p`
   font-size: 0.9rem;
   margin: 0.3rem auto;
   width: 90%;
   text-align: right;
 `;
 
-export const BotaoLeitura = styled.button`
+export const Button = styled.button`
   width: 100%;
   border: none;
   color: #fff;
@@ -173,7 +173,7 @@ export const ContainerTexto = styled.div`
   margin-top: 5rem;
 `;
 
-export const TituloModal = styled.h3`
+export const TitleModal = styled.h3`
   font-size: 1.5rem;
   font-weight: bold;
   margin: 0;
@@ -193,7 +193,7 @@ export const DescriptionModal = styled.p`
   overflow-y: auto;
 `;
 
-export const BotaoAssinar = styled.button`
+export const SubscribeButton = styled.button`
   width: 20%;
   min-width: 200px;
   border: none;

@@ -9,13 +9,14 @@ import {
   getStateRequest,
   filterQuoteFromAPI,
 } from "./citaSlice";
-import { Input, AutorCita, ContainerCita, TextoCita, ValidationErrorMessage } from "./styled";
+import { Input, Container, ValidationErrorMessage, CharacterName, QuoteText } from "./styled";
 import { QuoteButton } from "./quoteButton";
 
 
 export const Quote = () => {
 
   const [inputValue, setInputValue] = useState("");
+
   const [regexValidation, setRegexValidation] = useState(false);
 
   const { quote = "", character = "" } = useAppSelector(getQuoteState, shallowEqual) || {};
@@ -51,10 +52,9 @@ export const Quote = () => {
 
 
   return (
-    <ContainerCita aria-label="form" onSubmit={(e) => e.preventDefault()}>
-
-      <TextoCita>{getMessage(quote, estadoPedido)}</TextoCita>
-      <AutorCita>{character}</AutorCita>
+    <Container aria-label="form" onSubmit={(e) => e.preventDefault()}>
+      <QuoteText>{getMessage(quote, estadoPedido)}</QuoteText>
+      <CharacterName>{character}</CharacterName>
       <Input
         aria-label="personagem"
         value={inputValue}
@@ -73,6 +73,6 @@ export const Quote = () => {
         primaryBtn={false}
         onClick={() => onClickClear()}
       />
-    </ContainerCita>
+    </Container>
   );
 }

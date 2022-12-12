@@ -3,7 +3,7 @@ import { AssinarImage } from "../../assets";
 import { obterNoticias } from "./fakeRest";
 import { ModalComponent } from "./ModalComponent";
 import { Card } from "./Card";
-import { ContainerNoticias, ListaNoticias, TituloNoticias } from "./styled";
+import { Container, NewsList, Title } from "./styled";
 export interface INoticiasNormalizadas {
   id: number;
   title: string;
@@ -52,9 +52,9 @@ export const News = () => {
 
 
   return (
-    <ContainerNoticias>
-      <TituloNoticias>Notícias dos Simpsons</TituloNoticias>
-      <ListaNoticias>
+    <Container>
+      <Title>Notícias dos Simpsons</Title>
+      <NewsList>
         {newsInfo.map((news) => (
           <Card key={news.id}
             image={news.image}
@@ -88,8 +88,8 @@ export const News = () => {
             />
           )
         ) : null}
-      </ListaNoticias>
-    </ContainerNoticias>
+      </NewsList>
+    </Container>
   );
 };
 

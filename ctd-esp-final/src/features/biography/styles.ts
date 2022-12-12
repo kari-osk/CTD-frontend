@@ -26,7 +26,7 @@ export const BioDescription = styled.p`
    margin: 1rem auto;
 `
 
-export const ContainerBtn = styled.div`
+export const ContainerButton = styled.div`
    display: flex;
    flex-direction: row;
    justify-content: center;

@@ -1,5 +1,5 @@
 import { CloseButton as Close } from "../../assets";
-import { ContainerModal, CardModal, CloseButton, ContainerTexto, DescriptionModal, ImageModal, TituloModal, BotaoAssinar } from './styled'
+import { ContainerModal, CardModal, CloseButton, ContainerTexto, DescriptionModal, ImageModal, TitleModal, SubscribeButton } from './styled'
 
 export interface IModalProps {
   title: string;
@@ -21,11 +21,11 @@ export function ModalComponent({ title, description, premium, image, handleModal
         </CloseButton>
         <ImageModal src={image} alt="news-image" />
         <ContainerTexto>
-          <TituloModal>{title}</TituloModal>
+          <TitleModal>{title}</TitleModal>
           <DescriptionModal>{description}</DescriptionModal>
           {
             premium === true
-              ? <BotaoAssinar onClick={handleModalSubscription}>{buttonName}</BotaoAssinar>
+              ? <SubscribeButton onClick={handleModalSubscription}>{buttonName}</SubscribeButton>
               : null
           }
         </ContainerTexto>

@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-export const ContainerCita = styled.div`
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,7 +15,7 @@ export const ContainerCita = styled.div`
   background-color: whitesmoke;
 `;
 
-export const TextoCita = styled.p`
+export const QuoteText = styled.p`
   font-size: 2rem;
   font-weight: bold;
   color: #333;
@@ -30,7 +30,7 @@ export const ValidationErrorMessage = styled.p`
   color: #b82216;
 `
 
-export const AutorCita = styled.p`
+export const CharacterName = styled.p`
   font-size: 1.7rem;
   font-weight: bold;
   color: #333;
