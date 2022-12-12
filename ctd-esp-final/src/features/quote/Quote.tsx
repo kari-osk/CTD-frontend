@@ -55,7 +55,7 @@ export const Quote = () => {
       <TextoCita>{getMessage(quote, estadoPedido)}</TextoCita>
       <AutorCita>{character}</AutorCita>
       <Input
-        aria-label="Autor da citação."
+        aria-label="personagem"
         value={inputValue}
         // onChange={(e) => setInputValue(e.target.value)}
         onChange={onSearch}

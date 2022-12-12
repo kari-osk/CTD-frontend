@@ -1,15 +1,34 @@
-import { render, screen } from "@testing-library/react"
+import { fireEvent, getByRole, render, screen, waitFor } from "@testing-library/react"
 import { Quote } from "./Quote"
 import { store } from "../../app/store"
 import userEvent from "@testing-library/user-event"
 import { Provider } from "react-redux";
 
-const mock = jest.fn();
+const mockSearch = jest.fn();
+
+// beforeEach()
 
 describe("Quote", () => {
+  describe("When render default state, show in the form", () => {
+    it("sentence: Nenhuma citação encontrada.", async () => {
+      render(
+        <Provider store={store}>
+          <Quote />
+        </Provider>
+      );
+      expect(screen.getByText("Nenhuma citação encontrada.")).toBeInTheDocument();
+    })
 
-  describe("when render default state", () => {
-    it("show button: Obter citação aleatória", async () => {
+    it("placeholder: Digite o autor: Homer, Bart, Lisa, Maggie, Marge...", async () => {
+      render(
+        <Provider store={store}>
+          <Quote />
+        </Provider>
+      );
+      expect(screen.getAllByPlaceholderText("Digite o autor: Homer, Bart, Lisa, Maggie, Marge...")).not.toBeNull();
+    })
+
+    it("button: Obter citação aleatória", async () => {
       render(
         <Provider store={store}>
           <Quote />
@@ -19,27 +38,56 @@ describe("Quote", () => {
       expect(screen.getByText("Obter citação aleatória")).toBeInTheDocument();
     })
 
-    it("show button: Apagar", async () => {
+    it("button: Apagar", async () => {
       render(
         <Provider store={store}>
           <Quote />
         </Provider>
       );
       expect(screen.getByText("Apagar")).toBeInTheDocument();
-    })
+    });
   });
 
+  describe("Insert value in input", () => {
+    it("allow to write the character name", async () => {
+      render(
+        <Provider store={store}>
+          <Quote />
+        </Provider>
+      );
+      const input = await screen.findByLabelText('personagem')
+      userEvent.click(screen.getByRole("button", { name: /Obter citação/i }))
+      fireEvent.change(input, { target: { value: 'lisa' } })
+      expect(await screen.findByDisplayValue('lisa')).toBeInTheDocument();
+    })
+
+    it("validate type. If insert number, show message that number are not allowed", async () => {
+      render(
+        <Provider store={store}>
+          <Quote />
+        </Provider>
+      );
+      const input = await screen.findByLabelText('personagem')
+      fireEvent.change(input, { target: { value: 123 } })
+      expect(await screen.findByText("Números não são aceitos.")).toBeTruthy();
+    })
+  })
 
 
-  // describe("when the button is clicked", () => {
-  //   it("shows character quotes", async () => {
+
+
+
+
+  // describe("when button Obter citação aleatória is clicked", () => {
+  //   it("show random quote", async () => {
   //     render(
   //       <Provider store={store}>
   //         <Quote />
   //       </Provider>
   //     );
-  //     userEvent.click(screen.getByText("Obter citação aleatória"))
-  //     expect(mock).toHaveBeenCalled();
+  //     const buttonText = screen.getByText("Obter citação aleatória");
+  //     userEvent.click(buttonText);
+  //     expect(mock).toBeCalled();
   //   })
   // })
 
