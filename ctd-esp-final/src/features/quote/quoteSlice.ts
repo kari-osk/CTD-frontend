@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AppDispatch, RootState } from "../../app/store";
 import { STATE_FETCH } from "./constants";
-import { getQuoteApi} from "./citaAPI";
+import { getQuoteApi} from "./quoteAPI";
 import { IQuote} from "./types";
 
 export interface StateQuote {

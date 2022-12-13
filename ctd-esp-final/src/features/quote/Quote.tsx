@@ -8,7 +8,7 @@ import {
   getQuoteFromAPI,
   getStateRequest,
   filterQuoteFromAPI,
-} from "./citaSlice";
+} from "./quoteSlice";
 import { Input, Container, ValidationErrorMessage, CharacterName, QuoteText } from "./styled";
 import { QuoteButton } from "./quoteButton";
 
@@ -68,11 +68,11 @@ export const Quote = () => {
 
       <QuoteButton
         arialabel={inputValue}
-        primaryBtn={true}
+        primaryButton={true}
         onClick={() => onClickShowQuote()}
       />
       <QuoteButton
-        primaryBtn={false}
+        primaryButton={false}
         onClick={() => onClickClear()}
       />
     </Container>

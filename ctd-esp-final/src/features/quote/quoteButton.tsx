@@ -3,14 +3,14 @@ import { Button } from './styled'
 
 interface IButtonProps {
   arialabel?: string;
-  primaryBtn: boolean;
+  primaryButton: boolean;
   onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-export function QuoteButton({ arialabel, primaryBtn, onClick }: IButtonProps) {
+export function QuoteButton({ arialabel, primaryButton, onClick }: IButtonProps) {
   return (
     <>
-      {primaryBtn === true
+      {primaryButton === true
         ?
         <Button
           aria-label={arialabel ? "Obter citação" : "Obter citação aleatória"}

@@ -4,6 +4,12 @@ import { store } from "../../app/store"
 import userEvent from "@testing-library/user-event"
 import { Provider } from "react-redux";
 import { QuoteButton } from "./quoteButton";
+import { rest } from 'msw'
+import { setupServer } from 'msw/node'
+import { ReactElement } from "react";
+import { configureStore } from "@reduxjs/toolkit";
+import quoteReducer from "../../features/quote/quoteSlice";
+
 
 
 const mockSearch = jest.fn();
@@ -88,7 +94,7 @@ describe("Quote", () => {
   describe("When button is clicked", () => {
     it("call function", async () => {
       render(
-        <QuoteButton primaryBtn={true} onClick={() => mockSearch()} />
+        <QuoteButton primaryButton={true} onClick={() => mockSearch()} />
       );
       const buttonText = screen.getByText("Obter citação aleatória");
       userEvent.click(buttonText);
@@ -99,7 +105,7 @@ describe("Quote", () => {
 
     it("clear input", async () => {
       render(
-        <QuoteButton primaryBtn={false} onClick={() => mockSearch()} />
+        <QuoteButton primaryButton={false} onClick={() => mockSearch()} />
       );
       const buttonText = screen.getByText("Apagar");
       userEvent.click(buttonText);
@@ -109,4 +115,78 @@ describe("Quote", () => {
     })
   })
 
+
+  // MSW Test----------------------------------------------------------------
+
+
+  function renderWithReduxProvider(element: ReactElement) {
+    const store = configureStore({
+      reducer: {
+        quote: quoteReducer,
+      }
+    });
+    return render(element, {
+      wrapper: ({ children }) => <Provider store={store}>{children}</Provider>
+    });
+  }
+
+  describe("Quote component", () => {
+    describe("When API call failed", () => {
+      const server = setupServer(
+        rest.get("https://thesimpsonsquoteapi.glitch.me/quotes", (req, res, ctx) => {
+          return res(
+            ctx.status(500),
+            ctx.json({ error: 'Error' }),
+          )
+        })
+      )
+      beforeEach(() => {
+        server.listen()
+      });
+
+      afterEach(() => {
+        server.close()
+        server.resetHandlers()
+      });
+
+      it('show error message', async () => {
+        renderWithReduxProvider(<Quote />)
+
+        const fetchCharacterQuote = await screen.findByText('Obter citação aleatória');
+        await userEvent.click(fetchCharacterQuote)
+
+        expect(await screen.findByText('Nenhuma citação encontrada.')).toBeInTheDocument()
+      })
+    })
+
+    describe("When character name is invalid", () => {
+      const server = setupServer(
+        rest.get("https://thesimpsonsquoteapi.glitch.me/quotes", (req, res, ctx) => {
+          return res(
+            ctx.status(200),
+            ctx.json({ success: 'Success' }),
+          )
+        })
+      )
+      beforeEach(() => {
+        server.listen()
+      });
+
+      afterEach(() => {
+        server.close()
+        server.resetHandlers()
+      });
+
+      it('show invalid name message', async () => {
+        renderWithReduxProvider(<Quote />)
+
+        const fetchCharacterQuote = await screen.findByText('Obter citação aleatória');
+        await userEvent.click(fetchCharacterQuote)
+
+        expect(await screen.findByText('Por favor, indique um nome válido.')).toBeInTheDocument()
+      })
+    })
+  })
+
 })
+
