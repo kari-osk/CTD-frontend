@@ -65,8 +65,8 @@ describe("Quote", () => {
   });
 
 
-  describe("Insert value in input", () => {
-    it("allow to write the character name", async () => {
+  describe("Check the value in input", () => {
+    it("allow to insert the character name", async () => {
       render(
         <Provider store={store}>
           <Quote />
