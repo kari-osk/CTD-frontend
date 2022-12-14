@@ -40,7 +40,7 @@ export const CharacterName = styled.p`
 `;
 
 export const Input = styled.input`
-  width: 60%;
+  width: 90%;
   height: 50px;
   border-radius: 5px;
   border: 1px solid #ccc;
@@ -51,7 +51,7 @@ export const Input = styled.input`
 `;
 
 export const Button = styled.button<{ secondaryColor?: boolean }>`
-  width: 45%;
+  width: 50%;
   min-width: 250px;
   height: 50px;
   border-radius: 5px;

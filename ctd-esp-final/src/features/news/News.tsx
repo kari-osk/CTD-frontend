@@ -4,6 +4,11 @@ import { obterNoticias } from "./fakeRest";
 import { ModalComponent } from "./ModalComponent";
 import { Card } from "./Card";
 import { Container, NewsList, Title } from "./styled";
+
+// Componente News possui três cards, se for a modalida premium aparece o botão para assinar a newsletter, caso contrário o botão não é mostrado.
+// CLicando no botão "Veja mais" o modal é aberto com a notícia
+// Dentro do modal, clicando o botão "x" o modal é fechado
+
 export interface INoticiasNormalizadas {
   id: number;
   title: string;

@@ -2,15 +2,20 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { shallowEqual } from "react-redux";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { getMessage } from "./utils";
+import { QuoteButton } from "./quoteButton";
 import {
   getQuoteState,
   clear,
   getQuoteFromAPI,
   getRequestState,
-  filterQuoteFromAPI,
 } from "./quoteSlice";
 import { Input, Container, ValidationErrorMessage, CharacterName, QuoteText } from "./styled";
-import { QuoteButton } from "./quoteButton";
+
+
+// Component Quote possui um campo onde o usuário pode digitar o nome do personagem dos Simpsons e ter uma citação como resposta.
+// Ao digitar o nome no campo, o filtro com a pesquisa na API é ativado.
+// Clicando no botão "Obter citação aleatória" é mostrado uma citação;
+// Clicando no botão "Apagar" o campo e a citação são apagados.
 
 
 export const Quote = () => {
@@ -32,13 +37,21 @@ export const Quote = () => {
     setInputValue("");
   };
 
-  const onSearch = (e: ChangeEvent<HTMLInputElement>) => {
+
+  const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
     setTimeout(() => {
-      dispatch(filterQuoteFromAPI(e.target.value))
-    }, 1000)
-
+      dispatch(getQuoteFromAPI(inputValue))
+    }, 500)
     dispatch(clear());
+  }
+
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.keyCode === 8) {
+      dispatch(clear());
+      setInputValue("");
+    }
   }
 
   useEffect(() => {
@@ -52,18 +65,17 @@ export const Quote = () => {
 
 
   return (
-    <Container
-    // aria-label="form" onSubmit={(e) => e.preventDefault()}
-    >
+    <Container aria-label="form" onSubmit={(e) => e.preventDefault()}>
       <QuoteText>{getMessage(quote, requestState)}</QuoteText>
       <CharacterName>{character}</CharacterName>
       <Input
         aria-label="personagem"
-        value={inputValue}
-        // onChange={(e) => setInputValue(e.target.value)}
-        onChange={onSearch}
         placeholder="Digite o nome do personagem: Homer, Bart, Lisa, Maggie, Marge..."
+        value={inputValue}
+        onChange={handleOnChange}
+        onKeyDown={handleKeyDown}
       />
+
       {regexValidation ? <ValidationErrorMessage>Números não são aceitos.</ValidationErrorMessage > : null}
 
       <QuoteButton

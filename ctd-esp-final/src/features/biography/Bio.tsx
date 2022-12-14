@@ -2,6 +2,9 @@ import { useState } from "react";
 import { NomesSimpsons, INFO_SIMPSONS } from "./constants";
 import { BioContainer, ContainerButton, BioImage, BioNome, BioDescription, BioButton } from "./styles";
 
+// Componente Bio apresenta cinco botões com os nomes dos principais personagens de Simpsons. Ao clicar no nome é mostrado a descrição e a imagem do personagem. 
+
+
 export const Bio = () => {
   const [bioActive, setBioActive] = useState(INFO_SIMPSONS[NomesSimpsons.BART]);
 

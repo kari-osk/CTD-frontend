@@ -10,6 +10,7 @@ import { ReactElement } from "react";
 import { configureStore } from "@reduxjs/toolkit";
 import quoteReducer from "../../features/quote/quoteSlice";
 
+//Testes de componentes e de integração, realizados com o componente Quote
 
 const mockSearch = jest.fn();
 
@@ -113,6 +114,7 @@ describe("Quote", () => {
       })
     })
   })
+
 
 
   // MSW Test----------------------------------------------------------------

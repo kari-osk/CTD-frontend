@@ -63,7 +63,6 @@ const data = [
 ];
 
 
-
 export const obterNoticias: () => Promise<INoticias[]> = async () => {
   return new Promise((resolve) => {
     setTimeout(() => {

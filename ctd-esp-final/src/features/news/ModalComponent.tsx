@@ -1,6 +1,8 @@
 import { CloseButton as Close } from "../../assets";
 import { ContainerModal, CardModal, CloseButton, ContainerTexto, DescriptionModal, ImageModal, TitleModal, SubscribeButton } from './styled'
 
+//ModalComponent é aberto quando o usuário clica no botão "Veja mais" localizando dentro do componente Card
+
 export interface IModalProps {
   title: string;
   description: string;

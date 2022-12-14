@@ -40,6 +40,7 @@ export interface IProps {
 
 export const BioButton = styled.button<IProps>`
    border-radius: 5px;
+   border: 1px solid #000;
    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
    padding: 1rem;
    margin: 1rem;
@@ -53,13 +54,15 @@ export const BioButton = styled.button<IProps>`
   
    &:hover {
     cursor: pointer;
+    border: 1px solid #e1e1e1;
+    box-shadow: 0px 0px 5px 0px rgba(255, 253, 253, 10);
     }
 
   ${props => props.isActive &&
       css`
         background-color: #fdd835;
         border: 1px solid #fff;
-        box-shadow: 0px 0px 5px 0px rgba(255, 253, 253, 1);
+        box-shadow: 0px 0px 5px 0px rgba(255, 253, 253, 10);
       `
    }
 
