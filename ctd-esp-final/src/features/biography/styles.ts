@@ -47,6 +47,7 @@ export const BioButton = styled.button<IProps>`
    font-family: "Homer Simpson Revised", sans-serif;
    font-size: 1.4rem;
    background-color: #0000ff;
+   transition: ease-in-out .4s;
    color: whitesmoke;
    text-shadow: 2px 2px 0 #000000, 2px -2px 0 #000000, -2px 2px 0 #000000,
         -2px -2px 0 #000000, 2px 0px 0 #000000, 0px 2px 0 #000000,
@@ -54,12 +55,14 @@ export const BioButton = styled.button<IProps>`
   
    &:hover {
     cursor: pointer;
-    border: 1px solid #e1e1e1;
-    box-shadow: 0px 0px 5px 0px rgba(255, 253, 253, 10);
+    filter: brightness(.9);
+    border: 1px solid #0000ff;
+    box-shadow: 0px 0px 5px 0px rgba(64, 48, 164, 0.8);
     }
 
   ${props => props.isActive &&
       css`
+      transition: ease-in-out .4s;
         background-color: #fdd835;
         border: 1px solid #fff;
         box-shadow: 0px 0px 5px 0px rgba(255, 253, 253, 10);

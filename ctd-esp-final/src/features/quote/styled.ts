@@ -61,9 +61,13 @@ export const Button = styled.button<{ secondaryColor?: boolean }>`
   margin: 1rem auto;
   font-family: "Homer Simpson Revised", sans-serif;
   font-size: 1.5rem;
+  transition: ease-in-out .4s;
 
   &:hover {
     cursor: pointer;
+    filter: brightness(.9);
+     border: 1px solid #e1e1e1;
+    box-shadow: 0px 0px 5px 0px rgba(255, 253, 253, 10);
   }
 
   ${(props) =>
