@@ -21,3 +21,24 @@ export const getQuoteApi: (character?: string) => Promise<IQuote> = async (
 
   return dataNormalizada;
 };
+
+// export const getSingleQuoteApi: (num?:string, character?: string) => Promise<IQuote> = async (
+//   character
+// ) => {
+//   if (character && parseInt(character)) {
+//     throw new Error("O nome deve ser um texto");
+//   }
+
+//   const url = character ? `${API_URL}?count=1&character=${character}` : API_URL;
+//   const resposta = await fetch(url);
+//   const [data] = await resposta.json();
+
+//   const dataNormalizada = {
+//     quote: data.quote,
+//     character: data.character,
+//     image: data.image,
+//     characterDirection: data.characterDirection,
+//   };
+
+//   return dataNormalizada;
+// };

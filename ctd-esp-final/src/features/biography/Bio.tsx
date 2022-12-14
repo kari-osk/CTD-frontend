@@ -9,15 +9,12 @@ export const Bio = () => {
 
   const criarBotoes = () => {
     return Object.keys(INFO_SIMPSONS).map((nome: string) => (
-
       <BioButton
         isActive={bioActive.id === nome ? true : false}
         onClick={() => onClick(nome as NomesSimpsons)}
       >
         {nome}
       </BioButton>
-
-
     ));
   };
 

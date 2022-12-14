@@ -1,20 +1,22 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { AppDispatch, RootState } from "../../app/store";
 import { STATE_FETCH } from "./constants";
-import { getQuoteApi} from "./quoteAPI";
+import { getQuoteApi, 
+// getSingleQuoteApi
+} from "./quoteAPI";
 import { IQuote} from "./types";
 
 export interface StateQuote {
   data: IQuote | null;
   stateQuote: STATE_FETCH;
-  query: Array<string>;
+  // query: Array<string>;
 
 }
 
 const initialState: StateQuote= {
   data: null,
   stateQuote: STATE_FETCH.INACTIVE,
-  query: [],
+  // query: [],
 
 };
 
@@ -30,6 +32,20 @@ export const getQuoteAsync = createAsyncThunk(
   }
 );
 
+
+// export const getSingleQuoteAsync = createAsyncThunk(
+//   "quote/getSingleQuoteApi",
+//   async (character: string) => {
+//     try {
+//       const responseSingleQuote = await getSingleQuoteApi(character);
+//       return responseSingleQuote;
+//     } catch (err) {
+//       throw err;
+//     }
+//   }
+// );
+
+
 export const quoteSlice = createSlice({
   name: "citacoes",
   initialState,
@@ -43,7 +59,7 @@ export const quoteSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getQuoteAsync.pending, (state) => {
-        state.stateQuote = STATE_FETCH.CARREGANDO;
+        state.stateQuote = STATE_FETCH.LOADING;
       })
       .addCase(getQuoteAsync.fulfilled, (state, action) => {
         state.stateQuote = STATE_FETCH.INACTIVE;
@@ -71,10 +87,14 @@ export const filterQuoteFromAPI = (character: string) => (dispatch: AppDispatch)
     dispatch(clear());
 }
 
+// export const filterQuoteFromAPI = (character: string) => (dispatch: AppDispatch)=> {
+//     dispatch(getSingleQuoteAsync(character));
+//     dispatch(clear());
+// }
 
 
 export const getQuoteState = (state: RootState) => state.quote.data;
-export const getStateRequest = (state: RootState) => state.quote.stateQuote;
-export const getInput = (state: RootState) => state.quote.query;
+export const getRequestState = (state: RootState) => state.quote.stateQuote;
+// export const getInput = (state: RootState) => state.quote.query;
 
 export default quoteSlice.reducer;

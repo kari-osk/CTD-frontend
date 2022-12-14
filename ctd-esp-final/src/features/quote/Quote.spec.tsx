@@ -11,7 +11,6 @@ import { configureStore } from "@reduxjs/toolkit";
 import quoteReducer from "../../features/quote/quoteSlice";
 
 
-
 const mockSearch = jest.fn();
 
 // beforeEach(() => {

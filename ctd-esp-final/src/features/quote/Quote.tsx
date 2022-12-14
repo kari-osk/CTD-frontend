@@ -6,7 +6,7 @@ import {
   getQuoteState,
   clear,
   getQuoteFromAPI,
-  getStateRequest,
+  getRequestState,
   filterQuoteFromAPI,
 } from "./quoteSlice";
 import { Input, Container, ValidationErrorMessage, CharacterName, QuoteText } from "./styled";
@@ -21,7 +21,7 @@ export const Quote = () => {
 
   const { quote = "", character = "" } = useAppSelector(getQuoteState, shallowEqual) || {};
 
-  const estadoPedido = useAppSelector(getStateRequest);
+  const requestState = useAppSelector(getRequestState);
 
   const dispatch = useAppDispatch();
 
@@ -55,7 +55,7 @@ export const Quote = () => {
     <Container
     // aria-label="form" onSubmit={(e) => e.preventDefault()}
     >
-      <QuoteText>{getMessage(quote, estadoPedido)}</QuoteText>
+      <QuoteText>{getMessage(quote, requestState)}</QuoteText>
       <CharacterName>{character}</CharacterName>
       <Input
         aria-label="personagem"

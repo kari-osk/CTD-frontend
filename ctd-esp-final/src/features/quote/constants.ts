@@ -1,6 +1,6 @@
 export enum STATE_FETCH {
   INACTIVE,
-  CARREGANDO,
+  LOADING,
   ERROR,
 }
 

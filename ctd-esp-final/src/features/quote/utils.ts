@@ -6,16 +6,16 @@ import {
 } from "./constants";
 
 export const getMessage: (
-  cita: string,
-  estadoPedido: STATE_FETCH
-) => string = (cita, estadoPedido) => {
-  if (estadoPedido === STATE_FETCH.CARREGANDO) {
+  quote: string,
+  requestState: STATE_FETCH
+) => string = (quote, requestState) => {
+  if (requestState === STATE_FETCH.LOADING) {
     return LOADING_MSG;
   }
 
-  if (estadoPedido === STATE_FETCH.ERROR) {
+  if (requestState === STATE_FETCH.ERROR) {
     return INVALID_NAME;
   }
 
-  return cita ? `${cita}` : NOT_FOUND;
+  return quote ? `${quote}` : NOT_FOUND;
 };

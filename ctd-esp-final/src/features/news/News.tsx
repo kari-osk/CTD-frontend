@@ -55,39 +55,46 @@ export const News = () => {
     <Container>
       <Title>Notícias dos Simpsons</Title>
       <NewsList>
-        {newsInfo.map((news) => (
-          <Card key={news.id}
-            image={news.image}
-            title={news.title}
-            date={news.date}
-            descriptionCurto={news.descriptionCurto}
-            handleBtn={() => setModal(news)} />
-        ))}
+        {
+          newsInfo.map((news) => (
+            <Card key={news.id}
+              image={news.image}
+              title={news.title}
+              date={news.date}
+              descriptionCurto={news.descriptionCurto}
+              handleBtn={() => setModal(news)} />
+          ))
+        }
 
-        {modal ? (
-          modal.premium ? (
-            <ModalComponent
-              image={AssinarImage}
-              title="Asine a newsletter"
-              description="Assine nossa newsletter e receba novidades de nossos personagens favoritos"
-              premium={true}
-              handleModal={() => setModal(null)}
-              handleModalSubscription={() => setTimeout(() => {
-                alert("Inscrito com sucesso. Agora nós deve $ 100.000,00!");
-                setModal(null);
-              }, 500)}
-              buttonName="Assinar"
-            />
-          ) : (
-            <ModalComponent
-              image={modal.image}
-              title={modal.title}
-              description={modal.description}
-              premium={modal.premium}
-              handleModal={() => setModal(null)}
-            />
-          )
-        ) : null}
+        {
+          modal
+            ? (
+              modal.premium
+                ? (
+                  <ModalComponent
+                    image={AssinarImage}
+                    title="Asine a newsletter"
+                    description="Assine nossa newsletter e receba novidades de nossos personagens favoritos"
+                    premium={true}
+                    handleModal={() => setModal(null)}
+                    handleModalSubscription={() => setTimeout(() => {
+                      alert("Inscrito com sucesso. Agora nós deve $ 100.000,00!");
+                      setModal(null);
+                    }, 500)}
+                    buttonName="Assinar"
+                  />
+                )
+                : (
+                  <ModalComponent
+                    image={modal.image}
+                    title={modal.title}
+                    description={modal.description}
+                    premium={modal.premium}
+                    handleModal={() => setModal(null)}
+                  />
+                )
+            )
+            : null}
       </NewsList>
     </Container>
   );
