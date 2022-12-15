@@ -14,16 +14,9 @@ import quoteReducer from "../../features/quote/quoteSlice";
 
 const mockSearch = jest.fn();
 
-// beforeEach(() => {
-//   render(
-//     <Provider store={store}>
-//       <Quote />
-//     </Provider>
-//   );
-// })
-
 
 describe("Quote", () => {
+
   describe("When render default state, in the form presents:", () => {
     it("sentence: Nenhuma citação encontrada.", async () => {
       render(

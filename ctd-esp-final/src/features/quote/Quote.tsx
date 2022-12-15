@@ -8,6 +8,7 @@ import {
   clear,
   getQuoteFromAPI,
   getRequestState,
+  filterQuoteFromAPI,
 } from "./quoteSlice";
 import { Input, Container, ValidationErrorMessage, CharacterName, QuoteText } from "./styled";
 
@@ -22,7 +23,7 @@ export const Quote = () => {
 
   const [inputValue, setInputValue] = useState("");
 
-  const [regexValidation, setRegexValidation] = useState(false);
+  const [regexIsValid, setRegexIsValid] = useState(true);
 
   const { quote = "", character = "" } = useAppSelector(getQuoteState, shallowEqual) || {};
 
@@ -40,10 +41,11 @@ export const Quote = () => {
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
-    setTimeout(() => {
-      dispatch(getQuoteFromAPI(inputValue))
-    }, 500)
-    dispatch(clear());
+    if (regexIsValid === true) {
+      setTimeout(() => {
+        dispatch(filterQuoteFromAPI(inputValue))
+      }, 1000)
+    }
   }
 
 
@@ -55,19 +57,24 @@ export const Quote = () => {
   }
 
   useEffect(() => {
-    const regex = /^[a-zA-Z]*$/
+    const regex = /^[A-Za-z]*$/i
     if (regex.test(inputValue)) {
-      setRegexValidation(false)
+      setRegexIsValid(true)
     } else {
-      setRegexValidation(true)
+      setRegexIsValid(false)
     }
   }, [inputValue])
 
 
   return (
-    <Container aria-label="form" onSubmit={(e) => e.preventDefault()}>
+    <Container>
       <QuoteText>{getMessage(quote, requestState)}</QuoteText>
       <CharacterName>{character}</CharacterName>
+      {
+        regexIsValid
+          ? null
+          : <ValidationErrorMessage>Números não são aceitos.</ValidationErrorMessage>
+      }
       <Input
         aria-label="personagem"
         placeholder="Digite o nome do personagem: Homer, Bart, Lisa, Maggie, Marge..."
@@ -75,9 +82,6 @@ export const Quote = () => {
         onChange={handleOnChange}
         onKeyDown={handleKeyDown}
       />
-
-      {regexValidation ? <ValidationErrorMessage>Números não são aceitos.</ValidationErrorMessage > : null}
-
       <QuoteButton
         arialabel={inputValue}
         primaryButton={true}

@@ -9,10 +9,12 @@ export interface StateQuote {
   stateQuote: STATE_FETCH;
 }
 
+
 const initialState: StateQuote= {
   data: null,
   stateQuote: STATE_FETCH.INACTIVE,
 };
+
 
 
 export const getQuoteAsync = createAsyncThunk(
@@ -28,13 +30,14 @@ export const getQuoteAsync = createAsyncThunk(
 );
 
 
+
+
 export const quoteSlice = createSlice({
   name: "citacoes",
   initialState,
   reducers: {
     clear: () => initialState,
   },
-
   extraReducers: (builder) => {
     builder
       .addCase(getQuoteAsync.pending, (state) => {
@@ -51,13 +54,21 @@ export const quoteSlice = createSlice({
 });
 
 
-export const { clear } = quoteSlice.actions;
+
+export const { clear} = quoteSlice.actions;
 
 export const getQuoteFromAPI =
   (character: string) => (dispatch: AppDispatch) => {
     dispatch(getQuoteAsync(character));
     dispatch(clear());
   };
+
+
+
+export const filterQuoteFromAPI = (character: string) => (dispatch: AppDispatch)=> {
+    dispatch(getQuoteAsync(character));
+    dispatch(clear());
+};
 
 
 export const getQuoteState = (state: RootState) => state.quote.data;
